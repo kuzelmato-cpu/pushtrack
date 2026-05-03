@@ -1,7 +1,7 @@
 // PushTrack — Stats Screen
 // Design: Minimal Dark Precision / Sports Analytics
 
-import { Trophy, Flame, TrendingUp, Calendar, Star, BarChart2, Award, ChevronLeft } from "lucide-react";
+import { Trophy, Flame, TrendingUp, Calendar, Star, BarChart2, Award, ChevronLeft, Zap } from "lucide-react";
 import { useLocation } from "wouter";
 import {
   getPersonalRecords,
@@ -14,7 +14,9 @@ import {
   getAllMonths,
   getMonthStats,
   progressColor,
+  todayStr,
 } from "../lib/analytics";
+import { getProgressiveOverloadPlan, getCurrentWeekInfo, getWeeklyTarget } from "../lib/progressive";
 
 function RecordCard({
   icon,
@@ -90,6 +92,31 @@ export default function Stats() {
           </div>
           <ChevronLeft size={18} className="rotate-180" style={{ color: "oklch(0.55 0.01 265)" }} />
         </button>
+
+        {/* Progressive Overload Info */}
+        {getProgressiveOverloadPlan()?.active && (() => {
+          const weekInfo = getCurrentWeekInfo();
+          const plan = getProgressiveOverloadPlan();
+          if (!weekInfo || !plan || weekInfo.weekNumber >= plan.weeks) return null;
+          return (
+            <div className="pt-card p-4 rounded-xl" style={{ background: "linear-gradient(135deg, oklch(0.88 0.18 155 / 15%) 0%, #1A1D27 100%)" }}>
+              <div className="flex items-center gap-2 mb-3">
+                <Zap size={16} style={{ color: "#4FFFB0" }} />
+                <p className="text-sm font-semibold text-foreground uppercase tracking-wider">Progressive Overload</p>
+              </div>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Week {weekInfo.weekNumber + 1} of {plan.weeks}</span>
+                  <span style={{ color: "#4FFFB0" }}>Daily: {weekInfo.dailyTarget}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Weekly Target</span>
+                  <span style={{ color: "#FFD166" }}>{weekInfo.weeklyTarget.toLocaleString()}</span>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
 
         {/* Personal Records */}
         <div>

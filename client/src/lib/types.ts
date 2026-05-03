@@ -28,11 +28,21 @@ export interface WorkoutTemplate {
   totalReps: number;
 }
 
+export interface ProgressiveOverloadPlan {
+  startDate: string; // "YYYY-MM-DD"
+  yearMonth: string; // "YYYY-MM"
+  startingDaily: number; // daily target for week 1
+  weeklyIncrement: number; // how much to add each week
+  weeks: number; // typically 4
+  active: boolean;
+}
+
 export interface AppData {
   days: Record<string, DayEntry>; // keyed by "YYYY-MM-DD"
   monthGoals: Record<string, MonthGoal>; // keyed by "YYYY-MM"
   bestStreak: number;
   fitnessTest: FitnessTest | null;
+  progressiveOverload: ProgressiveOverloadPlan | null;
 }
 
 export interface DayStats {

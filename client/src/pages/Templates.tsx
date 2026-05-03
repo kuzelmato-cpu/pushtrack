@@ -107,10 +107,19 @@ export default function Templates() {
           })}
         </div>
 
+        {/* Progressive Overload */}
+        <button
+          onClick={() => navigate("/progressive-overload")}
+          className="w-full py-3 rounded-xl text-sm font-medium transition-colors mt-4 mb-2"
+          style={{ background: "oklch(0.88 0.18 155 / 15%)", color: "#4FFFB0" }}
+        >
+          Try Progressive Overload
+        </button>
+
         {/* Custom Goal */}
         <button
           onClick={() => navigate("/goals")}
-          className="w-full py-3 rounded-xl text-sm font-medium transition-colors mt-4"
+          className="w-full py-3 rounded-xl text-sm font-medium transition-colors"
           style={{ background: "oklch(1 0 0 / 8%)", color: "oklch(0.75 0.01 265)" }}
         >
           Set Custom Goal

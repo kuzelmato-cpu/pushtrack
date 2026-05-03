@@ -18,6 +18,7 @@ import Stats from "./pages/Stats";
 import FitnessTest from "./pages/FitnessTest";
 import Templates from "./pages/Templates";
 import MonthlyReport from "./pages/MonthlyReport";
+import ProgressiveOverload from "./pages/ProgressiveOverload";
 
 function Router() {
   return (
@@ -31,6 +32,7 @@ function Router() {
         <Route path="/fitness-test" component={FitnessTest} />
         <Route path="/templates" component={Templates} />
         <Route path="/monthly-report" component={MonthlyReport} />
+        <Route path="/progressive-overload" component={ProgressiveOverload} />
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />
       </Switch>
