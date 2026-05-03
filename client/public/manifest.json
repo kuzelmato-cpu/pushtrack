@@ -11,7 +11,7 @@
   "categories": ["fitness", "health", "productivity"],
   "screenshots": [
     {
-      "src": "https://d2xsxph8kpxj0f.cloudfront.net/310519663623028077/XFJ2p75fpo8FHYh9qubiBF/pushtrack-icon-192-EVX9LJXpQ34g6fy4X8VG7i.png",
+      "src": "/manus-storage/pushtrack-icon-192-resized_880fddf5.png",
       "sizes": "192x192",
       "type": "image/png",
       "form_factor": "narrow"
@@ -19,25 +19,25 @@
   ],
   "icons": [
     {
-      "src": "https://d2xsxph8kpxj0f.cloudfront.net/310519663623028077/XFJ2p75fpo8FHYh9qubiBF/pushtrack-icon-192-EVX9LJXpQ34g6fy4X8VG7i.png",
+      "src": "/manus-storage/pushtrack-icon-192-resized_880fddf5.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "https://d2xsxph8kpxj0f.cloudfront.net/310519663623028077/XFJ2p75fpo8FHYh9qubiBF/pushtrack-icon-192-EVX9LJXpQ34g6fy4X8VG7i.png",
+      "src": "/manus-storage/pushtrack-icon-192-resized_880fddf5.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "https://d2xsxph8kpxj0f.cloudfront.net/310519663623028077/XFJ2p75fpo8FHYh9qubiBF/pushtrack-icon-512-6PaqTvXdyLYFWt9cdQm5zo.png",
+      "src": "/manus-storage/pushtrack-icon-512-resized_2a8b9f1f.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "https://d2xsxph8kpxj0f.cloudfront.net/310519663623028077/XFJ2p75fpo8FHYh9qubiBF/pushtrack-icon-512-6PaqTvXdyLYFWt9cdQm5zo.png",
+      "src": "/manus-storage/pushtrack-icon-512-resized_2a8b9f1f.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
@@ -51,7 +51,7 @@
       "url": "/log",
       "icons": [
         {
-          "src": "https://d2xsxph8kpxj0f.cloudfront.net/310519663623028077/XFJ2p75fpo8FHYh9qubiBF/pushtrack-icon-log-dJx4QWXZsQLgAeaNRToAV5.png",
+          "src": "/manus-storage/pushtrack-icon-log-resized_b10e5590.png",
           "sizes": "96x96",
           "type": "image/png"
         }
@@ -64,7 +64,7 @@
       "url": "/stats",
       "icons": [
         {
-          "src": "https://d2xsxph8kpxj0f.cloudfront.net/310519663623028077/XFJ2p75fpo8FHYh9qubiBF/pushtrack-icon-stats-etCTRfDmusrRJ6nKTmjJ7C.png",
+          "src": "/manus-storage/pushtrack-icon-stats-resized_998dc528.png",
           "sizes": "96x96",
           "type": "image/png"
         }
