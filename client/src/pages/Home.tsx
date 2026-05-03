@@ -3,7 +3,7 @@
 // Dark #0F1117, Mint #4FFFB0, Syne display font, DM Sans body
 
 import { useLocation } from "wouter";
-import { Flame, Trophy, ChevronRight, Moon, Zap, Plus, TrendingUp } from "lucide-react";
+import { Flame, Trophy, ChevronRight, Moon, Zap, Plus, TrendingUp, Calendar } from "lucide-react";
 import { usePushTrack } from "../contexts/PushTrackContext";
 import {
   formatYearMonth,
@@ -12,6 +12,7 @@ import {
   formatDate,
   todayStr,
   getBestStreakEver,
+  getRecentWeeklySummaries,
 } from "../lib/analytics";
 import { getCurrentWeekInfo, getProgressiveOverloadPlan } from "../lib/progressive";
 import { useState, useEffect } from "react";
@@ -84,6 +85,8 @@ export default function Home() {
   const progressiveOverload = getProgressiveOverloadPlan();
   const weekInfo = progressiveOverload?.active ? getCurrentWeekInfo() : null;
   const weeklyProgress = weekInfo ? Math.round((monthStats.total / weekInfo.weeklyTarget) * 100) : 0;
+  const weeklySummaries = getRecentWeeklySummaries(1);
+  const currentWeek = weeklySummaries[0];
 
   return (
     <div className="page-content bg-background">
@@ -191,6 +194,28 @@ export default function Home() {
             )}
           </div>
         </div>
+
+        {/* This Week Summary */}
+        {currentWeek && (
+          <div className="pt-card p-4 flex items-center gap-3">
+            <div
+              className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+              style={{ background: "oklch(0.88 0.18 155 / 15%)" }}
+            >
+              <Calendar size={20} style={{ color: "#4FFFB0" }} />
+            </div>
+            <div className="flex-1">
+              <p className="text-xs text-muted-foreground uppercase tracking-wider">This Week</p>
+              <p className="text-foreground font-medium mt-0.5">
+                <span className="stat-number text-lg" style={{ color: "#4FFFB0" }}>
+                  {currentWeek.total.toLocaleString()}
+                </span>
+                {" "}
+                <span className="text-sm text-muted-foreground">pushups • {currentWeek.daysLogged} days</span>
+              </p>
+            </div>
+          </div>
+        )}
 
         {/* Progressive Overload Weekly Target */}
         {weekInfo && weekInfo.weekNumber < (progressiveOverload?.weeks ?? 0) && (
