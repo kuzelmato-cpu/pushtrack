@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import { useLocation } from "wouter";
-import { ChevronLeft, Target, Check, TrendingUp } from "lucide-react";
+import { ChevronLeft, Target, Check, TrendingUp, Award, Zap } from "lucide-react";
 import { usePushTrack } from "../contexts/PushTrackContext";
 import { toast } from "sonner";
 import {
@@ -151,6 +151,28 @@ export default function Goals() {
             </div>
           </div>
         )}
+
+        {/* Quick Links */}
+        <div className="grid grid-cols-2 gap-3">
+          <button
+            onClick={() => navigate("/fitness-test")}
+            className="pt-card p-4 text-center rounded-xl hover:border-primary transition-colors"
+            style={{ borderColor: "oklch(1 0 0 / 12%)" }}
+          >
+            <Award size={20} className="mx-auto mb-2" style={{ color: "#4FFFB0" }} />
+            <p className="text-xs font-semibold text-foreground">Fitness Test</p>
+            <p className="text-xs text-muted-foreground mt-1">Find your level</p>
+          </button>
+          <button
+            onClick={() => navigate("/templates")}
+            className="pt-card p-4 text-center rounded-xl hover:border-primary transition-colors"
+            style={{ borderColor: "oklch(1 0 0 / 12%)" }}
+          >
+            <Zap size={20} className="mx-auto mb-2" style={{ color: "#FFD166" }} />
+            <p className="text-xs font-semibold text-foreground">Templates</p>
+            <p className="text-xs text-muted-foreground mt-1">Pre-built plans</p>
+          </button>
+        </div>
 
         {/* Past Months */}
         {allMonths.length > 0 && (

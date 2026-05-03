@@ -9,6 +9,7 @@ const DEFAULT_DATA: AppData = {
   days: {},
   monthGoals: {},
   bestStreak: 0,
+  fitnessTest: null,
 };
 
 export function loadData(): AppData {
@@ -20,6 +21,7 @@ export function loadData(): AppData {
       days: parsed.days ?? {},
       monthGoals: parsed.monthGoals ?? {},
       bestStreak: parsed.bestStreak ?? 0,
+      fitnessTest: parsed.fitnessTest ?? null,
     };
   } catch {
     return { ...DEFAULT_DATA };

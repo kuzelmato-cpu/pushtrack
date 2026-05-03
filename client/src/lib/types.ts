@@ -13,10 +13,26 @@ export interface MonthGoal {
   goal: number;
 }
 
+export interface FitnessTest {
+  date: string; // "YYYY-MM-DD"
+  maxReps: number;
+  level: "beginner" | "intermediate" | "beast";
+  suggestedGoal: number;
+}
+
+export interface WorkoutTemplate {
+  id: string;
+  name: string;
+  description: string;
+  dailyTargets: number[]; // per day for 30 days
+  totalReps: number;
+}
+
 export interface AppData {
   days: Record<string, DayEntry>; // keyed by "YYYY-MM-DD"
   monthGoals: Record<string, MonthGoal>; // keyed by "YYYY-MM"
   bestStreak: number;
+  fitnessTest: FitnessTest | null;
 }
 
 export interface DayStats {
@@ -50,4 +66,19 @@ export interface PersonalRecords {
   bestDay: { date: string; count: number } | null;
   bestWeek: { startDate: string; count: number } | null;
   bestMonth: { yearMonth: string; count: number } | null;
+}
+
+export interface MonthlyReport {
+  yearMonth: string;
+  goalTarget: number;
+  totalCompleted: number;
+  goalMet: boolean;
+  bestDay: number;
+  daysActive: number;
+  dailyAverage: number;
+  previousMonth: {
+    total: number;
+    dailyAverage: number;
+  } | null;
+  improvement: number | null; // % improvement vs previous month
 }

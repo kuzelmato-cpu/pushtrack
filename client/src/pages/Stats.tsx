@@ -1,7 +1,8 @@
 // PushTrack — Stats Screen
 // Design: Minimal Dark Precision / Sports Analytics
 
-import { Trophy, Flame, TrendingUp, Calendar, Star, BarChart2 } from "lucide-react";
+import { Trophy, Flame, TrendingUp, Calendar, Star, BarChart2, Award, ChevronLeft } from "lucide-react";
+import { useLocation } from "wouter";
 import {
   getPersonalRecords,
   getRecentWeeklySummaries,
@@ -48,6 +49,7 @@ function RecordCard({
 }
 
 export default function Stats() {
+  const [, navigate] = useLocation();
   const records = getPersonalRecords();
   const currentStreak = getCurrentStreak();
   const bestStreak = getBestStreakEver();
@@ -69,6 +71,25 @@ export default function Stats() {
           <h1 className="font-display text-xl text-foreground">Stats</h1>
           <p className="text-xs text-muted-foreground mt-0.5">Personal records & progress</p>
         </div>
+
+        {/* Monthly Report Button */}
+        <button
+          onClick={() => navigate("/monthly-report")}
+          className="pt-card p-4 flex items-center gap-3 rounded-xl hover:border-primary transition-colors"
+          style={{ borderColor: "oklch(1 0 0 / 12%)" }}
+        >
+          <div
+            className="w-10 h-10 rounded-xl flex items-center justify-center"
+            style={{ background: "oklch(0.88 0.18 155 / 15%)" }}
+          >
+            <Award size={18} style={{ color: "#4FFFB0" }} />
+          </div>
+          <div className="flex-1 text-left">
+            <p className="text-sm font-semibold text-foreground">Monthly Report Card</p>
+            <p className="text-xs text-muted-foreground">View your end-of-month summary</p>
+          </div>
+          <ChevronLeft size={18} className="rotate-180" style={{ color: "oklch(0.55 0.01 265)" }} />
+        </button>
 
         {/* Personal Records */}
         <div>

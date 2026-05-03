@@ -15,6 +15,9 @@ import Log from "./pages/Log";
 import Goals from "./pages/Goals";
 import History from "./pages/History";
 import Stats from "./pages/Stats";
+import FitnessTest from "./pages/FitnessTest";
+import Templates from "./pages/Templates";
+import MonthlyReport from "./pages/MonthlyReport";
 
 function Router() {
   return (
@@ -25,6 +28,9 @@ function Router() {
         <Route path="/goals" component={Goals} />
         <Route path="/history" component={History} />
         <Route path="/stats" component={Stats} />
+        <Route path="/fitness-test" component={FitnessTest} />
+        <Route path="/templates" component={Templates} />
+        <Route path="/monthly-report" component={MonthlyReport} />
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />
       </Switch>
