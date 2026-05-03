@@ -11,6 +11,7 @@ const DEFAULT_DATA: AppData = {
   bestStreak: 0,
   fitnessTest: null,
   progressiveOverload: null,
+  weightLog: [],
 };
 
 export function loadData(): AppData {
@@ -24,6 +25,7 @@ export function loadData(): AppData {
       bestStreak: parsed.bestStreak ?? 0,
       fitnessTest: parsed.fitnessTest ?? null,
       progressiveOverload: parsed.progressiveOverload ?? null,
+      weightLog: parsed.weightLog ?? [],
     };
   } catch {
     return { ...DEFAULT_DATA };

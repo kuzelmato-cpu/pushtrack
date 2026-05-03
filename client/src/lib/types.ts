@@ -37,12 +37,18 @@ export interface ProgressiveOverloadPlan {
   active: boolean;
 }
 
+export interface WeightEntry {
+  date: string; // "YYYY-MM-DD"
+  weight: number; // in lbs or kg
+}
+
 export interface AppData {
   days: Record<string, DayEntry>; // keyed by "YYYY-MM-DD"
   monthGoals: Record<string, MonthGoal>; // keyed by "YYYY-MM"
   bestStreak: number;
   fitnessTest: FitnessTest | null;
   progressiveOverload: ProgressiveOverloadPlan | null;
+  weightLog: WeightEntry[]; // chronological list of weight entries
 }
 
 export interface DayStats {

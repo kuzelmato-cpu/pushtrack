@@ -19,6 +19,9 @@ import FitnessTest from "./pages/FitnessTest";
 import Templates from "./pages/Templates";
 import MonthlyReport from "./pages/MonthlyReport";
 import ProgressiveOverload from "./pages/ProgressiveOverload";
+import BodyWeight from "./pages/BodyWeight";
+import ShareProgress from "./pages/ShareProgress";
+import Settings from "./pages/Settings";
 
 function Router() {
   return (
@@ -33,6 +36,9 @@ function Router() {
         <Route path="/templates" component={Templates} />
         <Route path="/monthly-report" component={MonthlyReport} />
         <Route path="/progressive-overload" component={ProgressiveOverload} />
+        <Route path="/body-weight" component={BodyWeight} />
+        <Route path="/share-progress" component={ShareProgress} />
+        <Route path="/settings" component={Settings} />
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />
       </Switch>

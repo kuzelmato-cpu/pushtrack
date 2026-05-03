@@ -8,6 +8,7 @@ import {
   Target,
   CalendarDays,
   BarChart2,
+  Settings,
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -16,6 +17,7 @@ const NAV_ITEMS = [
   { path: "/goals",   icon: Target,       label: "Goals"   },
   { path: "/history", icon: CalendarDays, label: "History" },
   { path: "/stats",   icon: BarChart2,    label: "Stats"   },
+  { path: "/settings", icon: Settings,    label: "Settings" },
 ];
 
 export default function BottomNav() {

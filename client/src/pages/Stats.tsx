@@ -1,7 +1,7 @@
 // PushTrack — Stats Screen
 // Design: Minimal Dark Precision / Sports Analytics
 
-import { Trophy, Flame, TrendingUp, Calendar, Star, BarChart2, Award, ChevronLeft, Zap } from "lucide-react";
+import { Trophy, Flame, TrendingUp, Calendar, Star, BarChart2, Award, ChevronLeft, Zap, Scale, Share2 } from "lucide-react";
 import { useLocation } from "wouter";
 import {
   getPersonalRecords,
@@ -15,8 +15,10 @@ import {
   getMonthStats,
   progressColor,
   todayStr,
+  currentYearMonth,
 } from "../lib/analytics";
 import { getProgressiveOverloadPlan, getCurrentWeekInfo, getWeeklyTarget } from "../lib/progressive";
+import { getWeightPushupCorrelation, getMonthWeightStats } from "../lib/weight";
 
 function RecordCard({
   icon,
@@ -57,6 +59,9 @@ export default function Stats() {
   const bestStreak = getBestStreakEver();
   const weeklySummaries = getRecentWeeklySummaries(8);
   const allMonths = getAllMonths();
+  const ym = currentYearMonth();
+  const correlation = getWeightPushupCorrelation(ym);
+  const monthWeightStats = getMonthWeightStats(ym);
 
   // Filter weeks that have any activity
   const activeWeeks = weeklySummaries.filter((w) => w.total > 0 || w.daysRest > 0);
@@ -74,24 +79,33 @@ export default function Stats() {
           <p className="text-xs text-muted-foreground mt-0.5">Personal records & progress</p>
         </div>
 
-        {/* Monthly Report Button */}
-        <button
-          onClick={() => navigate("/monthly-report")}
-          className="pt-card p-4 flex items-center gap-3 rounded-xl hover:border-primary transition-colors"
-          style={{ borderColor: "oklch(1 0 0 / 12%)" }}
-        >
-          <div
-            className="w-10 h-10 rounded-xl flex items-center justify-center"
-            style={{ background: "oklch(0.88 0.18 155 / 15%)" }}
+        {/* Quick Links */}
+        <div className="grid grid-cols-3 gap-2">
+          <button
+            onClick={() => navigate("/monthly-report")}
+            className="pt-card p-3 text-center rounded-xl hover:border-primary transition-colors"
+            style={{ borderColor: "oklch(1 0 0 / 12%)" }}
           >
-            <Award size={18} style={{ color: "#4FFFB0" }} />
-          </div>
-          <div className="flex-1 text-left">
-            <p className="text-sm font-semibold text-foreground">Monthly Report Card</p>
-            <p className="text-xs text-muted-foreground">View your end-of-month summary</p>
-          </div>
-          <ChevronLeft size={18} className="rotate-180" style={{ color: "oklch(0.55 0.01 265)" }} />
-        </button>
+            <Award size={18} className="mx-auto mb-1" style={{ color: "#4FFFB0" }} />
+            <p className="text-xs font-semibold text-foreground">Report</p>
+          </button>
+          <button
+            onClick={() => navigate("/body-weight")}
+            className="pt-card p-3 text-center rounded-xl hover:border-primary transition-colors"
+            style={{ borderColor: "oklch(1 0 0 / 12%)" }}
+          >
+            <Scale size={18} className="mx-auto mb-1" style={{ color: "#FFD166" }} />
+            <p className="text-xs font-semibold text-foreground">Weight</p>
+          </button>
+          <button
+            onClick={() => navigate("/share-progress")}
+            className="pt-card p-3 text-center rounded-xl hover:border-primary transition-colors"
+            style={{ borderColor: "oklch(1 0 0 / 12%)" }}
+          >
+            <Share2 size={18} className="mx-auto mb-1" style={{ color: "#4FFFB0" }} />
+            <p className="text-xs font-semibold text-foreground">Share</p>
+          </button>
+        </div>
 
         {/* Progressive Overload Info */}
         {getProgressiveOverloadPlan()?.active && (() => {
@@ -236,6 +250,34 @@ export default function Stats() {
             );
           })()}
         </div>
+
+        {/* Weight & Pushups Correlation */}
+        {monthWeightStats.entries.length > 0 && (
+          <div className="pt-card p-4 rounded-xl" style={{ background: "linear-gradient(135deg, oklch(0.82 0.16 85 / 15%) 0%, #1A1D27 100%)" }}>
+            <div className="flex items-center gap-2 mb-3">
+              <Scale size={16} style={{ color: "#FFD166" }} />
+              <p className="text-sm font-semibold text-foreground uppercase tracking-wider">Weight vs Pushups</p>
+            </div>
+            <div className="space-y-2 text-sm">
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Correlation</span>
+                <span style={{ color: "#FFD166" }}>{correlation.correlation}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Trend</span>
+                <span style={{ color: correlation.trend === "positive" ? "#4FFFB0" : correlation.trend === "negative" ? "#FF5252" : "#FFD166" }}>
+                  {correlation.trend === "positive" ? "📈 Positive" : correlation.trend === "negative" ? "📉 Negative" : "➡️ Neutral"}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Strength</span>
+                <span style={{ color: correlation.strength === "strong" ? "#4FFFB0" : correlation.strength === "moderate" ? "#FFD166" : "#FF5252" }}>
+                  {correlation.strength.charAt(0).toUpperCase() + correlation.strength.slice(1)}
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Weekly Summaries List */}
         {activeWeeks.length > 0 && (
